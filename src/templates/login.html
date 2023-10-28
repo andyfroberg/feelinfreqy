@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock title %}
+{% block content %}
+
+    
+</header>
+<main>
+  <section class="">
+    <div class="container-fluid h-custom bg-black text-white">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-9 col-lg-6 col-xl-5">
+          <img src="https://trivial-614ce980.s3.amazonaws.com/img/emtpy_bartop_1024w.png"
+            class="img-fluid" alt="image">
+        </div>
+        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+            <div class="card-body p-5 shadow-5 text-center">
+              <h2 class="fw-bold mb-5">Sign in</h2>
+              <div class="form-outline mb-4">
+
+            <!-- Email input -->
+          <form method="post">
+              {{ form.csrf_token }}
+            <div class="col-auto">
+              <small id="emailHelpId" class="form-text text-muted">Enter email</small>
+              {{form.email(class="form-control")}}
+            </div>
+  
+            <!-- Password input -->
+            <div class="col-auto mt-2">
+              <small id="passwordHelpId" class="form-text text-muted">Enter password</small>
+              {{form.password(class="form-control")}}
+            </div>   
+  
+            <div class="d-flex justify-content-between align-items-center mt-2">
+              <a href="#!" class="text-white">Forgot password?</a>
+            </div>
+  
+            <div class="text-center text-lg-start mt-4 pt-2">
+              <button type="login" class="btn btn-primary btn-lg"
+                style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>      
+                <p class="text-muted mt-5 mb-0">Don't have an account? <a href="{{url_for('sign_up')}}"
+                  class="text-white"><u>Sign Up</u></a></p> 
+            </div>
+  
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% endblock content %}
+

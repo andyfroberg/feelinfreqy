@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="mt-5 text-center">Leaderboard - Top Trivial Users</h2>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-4">
+      <form method="post">
+        <div class="row">
+          <div class="col">
+            {{ user_filter_form.csrf_token }}
+            {{ user_filter_form.query(class="form-control", autofocus=true) }}
+          </div>
+          <div class="col">
+            <button type="submit" class="btn btn-secondary">Search</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-5 mb-5">
+  <div class="row justify-content-start">
+    <table class="table mb-4">
+      <thead>
+        <tr>
+          <th scope="col">Rank</th>
+          <th scope="col">User</th>
+          <th scope="col">Questions Answered</th>
+          <th scope="col">Accuracy</th>
+      </thead>
+      <tbody>
+        {% if users is not none %}
+        {% for user in users %}
+        <tr>
+          <th scope="row">{{ loop.index }}</th>
+          <td>{{ user.username }}</td>
+          <td>{{ user.score_lifetime }}</td>
+          {% if user.questions_attempted > 0 %}
+          <td>{{ ((user.score_lifetime / user.questions_attempted) * 100)|round|int }}%</td>
+          {% else %}
+          <td>"-"</td>
+          {% endif %}
+        </tr>
+          {% endfor %}
+          {% endif %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock content %} 

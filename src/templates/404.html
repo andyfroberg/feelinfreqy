@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}404{% endblock title %}
+{% block content %}
+ <style>
+  .hero-container {
+    height: 70vh;
+    background-image: url('https://trivial-614ce980.s3.amazonaws.com/img/emtpy_bartop_1024w.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+ </style>
+<div class="hero-container container-fluid m-0 p-0">
+  <div class="col-1"></div>
+  <div class="col-10 p-5 container-fluid">
+    <h2 class="align-items-center fst-italic">404 Page Not Found</h2>
+  </div>
+  <div class="col-1"></div>
+</div>
+
+{% endblock content %}

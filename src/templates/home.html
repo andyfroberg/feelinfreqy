@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock title %}
+{% block content %}
+ <style>
+  .hero-container {
+    height: 70vh;
+    background-image: url('https://trivial-614ce980.s3.amazonaws.com/img/bar_home_1024w.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .hero-sign-up-button {
+    font-size: 1.5em;
+    font-weight: 700;
+    border: none;
+  }
+ </style>
+<div class="hero-container m-0 p-0">
+  <div class="p-5 text-white text-center">
+    <h1 class="align-items-center fw-bold mt-5 mb-3">Practice pub trivia so you can:</h1>
+    <h2 class="align-items-center fst-italic">Impress your friends</h2>
+    <i class="bi bi-gift"></i>
+    <h2 class="align-items-center fst-italic">Avoid getting last place</h2>
+    <h2 class="align-items-center fst-italic">Compete for prizes</h2>
+    <h2 class="align-items-center fst-italic">And More!</h2>
+  </div>
+  <div class="p-3 text-white text-center">
+    <a name="sign-up" id="" class="btn hero-sign-up-button mt-4 bg-dark" 
+      href="{{ url_for('sign_up') }}" style="color: #FF10F0; text-shadow: #FE89D0 1px 0 8px; border: 3px solid #57c7ff" role="button">SIGN UP</a>
+  </div>
+</div>
+
+  {% endblock content %}
+
+ 

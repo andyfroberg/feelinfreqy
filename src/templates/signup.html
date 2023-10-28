@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Sign Up{% endblock title %}
+{% block content %}
+<main>
+  <section class="vh-80 bg-image"
+  style="background-image: url('https://trivial-614ce980.s3.amazonaws.com/img/emtpy_bartop_1024w.png'); 
+  background-position: center; background-repeat: no-repeat; background-size: cover;">
+    <div class="container h-100 p-5">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-xl-5">
+          <div class="card bg-black text-white" style="border-radius: 15px;">
+            <div class="card-body p-4">
+              <h2 class="text-uppercase text-center mb-4" style="color: #FF10F0; text-shadow: #FE89D0 1px 0 8px;">Create an account</h2>
+
+              <form method="post">
+                {{ form.csrf_token }}
+                <!-- <div class="form-outline mb-4">
+                  <input type="text" id="form3Example1cg" class="form-control form-control-lg" />
+                  <label class="form-label" for="form3Example1cg">Your Name</label>
+                </div> -->
+
+                <div class="form-outline mb-4">
+                  {{form.email(class="form-control")}}
+                  <label class="form-label" for="form3Example3cg" style="color: #FF10F0; text-shadow: #FE89D0 1px 0 8px; font-weight: bold;">Email</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                  {{form.username(class="form-control")}}
+                  <label class="form-label" for="form3Example3cg" style="color: #FF10F0; text-shadow: #FE89D0 1px 0 8px; font-weight: bold;">Username</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                  {{form.password(class="form-control")}}
+                  <label class="form-label" for="form3Example4cg" style="color: #FF10F0; text-shadow: #FE89D0 1px 0 8px; font-weight: bold;">Password</label>
+                </div>
+
+                <div class="form-outline mb-4">
+                  {{form.confirmPassword(class="form-control")}}
+                  <label class="form-label" for="form3Example4cdg" style="color: #FF10F0; text-shadow: #FE89D0 1px 0 8px; font-weight: bold;">Confirm Password</label>
+                </div>
+
+
+                <div class="d-flex justify-content-center">
+                  <button type="submit"
+                    class="btn btn-primary btn-block btn-lg gradient-custom-4">Sign Up</button>
+                </div>
+
+                <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="{{url_for('login')}}"
+                    class="fw-bold text-body"><u>Login here</u></a></p> 
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock content %}
