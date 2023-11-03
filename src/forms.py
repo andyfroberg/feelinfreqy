@@ -22,3 +22,12 @@ class TriviaAnswerForm(FlaskForm):
 
 class UserFilterForm(FlaskForm):
     query = StringField('query', validators=[Length(min=0, max=50)])
+
+
+class CreatePlaylist(FlaskForm):
+    name = StringField('name', validators=[DataRequired(), Length(min=1, max=64)])
+    mood = StringField('mood', validators=[DataRequired(), Length(min=1, max=64)])
+
+class CreateSong(FlaskForm):
+    title = StringField('title', validators=[DataRequired(), Length(min=1, max=64)])
+    artist = StringField('artist', validators=[DataRequired(), Length(min=1, max=64)])

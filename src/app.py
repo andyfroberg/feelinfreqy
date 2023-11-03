@@ -1,12 +1,13 @@
 #!/usr/local/bin/python3
 from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify
 from forms import LoginForm, RegisterForm, PasswordChangeForm, TriviaAnswerForm, UserFilterForm
-# from flask_login import login_user, logout_user, login_required, current_user
 import flask_login
 from models import db, login_manager, UserModel, Playlist, Song, load_user
 import json
 import os
 from dotenv import load_dotenv
+from random import choice
+import openai
 
 # Load env variables
 load_dotenv()
@@ -14,8 +15,9 @@ load_dotenv()
 # Create a new Flask application instance
 app = Flask(__name__)
 
-# Secret key (used for Flask sessions)
+# Setup environment
 app.secret_key = os.getenv("FLASK_APP_SECRET_KEY")
+openai.api_key = os.getenv("OPEN_AI_API_KEY")
 
 # Database configuration
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///freqy.db'
@@ -217,24 +219,65 @@ def change_password():
 ########## API Routes #############
 ####### Playlist Routes ###########
 @app.route('/api/playlists', methods=['POST'])
-def create_playlist():
-    pass
+def create_playlist(mood=None, name=None):
+    moods = ['happy', 'sad', 'anxious', 'energetic', 'calm']
+    if not mood:
+        mood = choice(moods)
+
+    # ask gpt for some songs to match the mood
+    completion = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant. Your job is to help a user create music playlists of songs based on a user's mood."},
+            {"role": "user", "content": f"Can you create a playlist of 10 songs that fit the mood of {mood}? "}
+        ]
+    )
+
+
+    if not name:
+        # ask gpt to create a playlist name based on the songs
+        pass
+
 
 @app.route('/api/playlists', methods=['GET'])
 def get_playlists():
-    pass
+    return {
+        "playlist1": {
+            "song1": "stairway to heaven",
+            "song2": "fortunate son"
+        }
+    }
 
-@app.route('/api/playlists/:id', methods=['GET'])
-def get_playlist_by_id():
-    pass
+# @app.route('/api/playlists/:id', methodsd=['GET', 'PUT', 'DELETE'])
+# def playlist(playlist_id):
+#     if request.method == 'GET':
+#         return
+    
+#     if request.method == 'PUT':
+#         return
+    
+#     if request.method == 'DELETE':
+#         return
+    
 
-@app.route('/api/playlists/:id', methods=['PUT'])
-def update_playlist():
-    pass
-
-@app.route('/api/playlists/:id', methods=['DELETE'])
-def delete_playlist():
-    pass
+# @app.route('/api/playlists/{playlist_id}', methodsd=['GET', 'PUT', 'DELETE'])
+# def playlist(playlist_id=None):
+#     if not playlist_id:
+#         if request.method == 'GET':
+#             return
+    
+#         if request.method == 'POST':
+#             return
+    
+#     else:
+#         if request.method == 'GET':
+#             return
+        
+#         if request.method == 'PUT':
+#             return
+        
+#         if request.method == 'DELETE':
+#             return
 
 ######## Song Routes ###########
 @app.route('/api/playlists/:id/songs', methods=['POST'])

@@ -10,10 +10,10 @@
 </head>
 <body>
   <header>
-    <nav class="navbar navbar-expand-sm navbar-light bg-dark bg-opacity-90">
+    <nav class="navbar navbar-expand-sm navbar-black bg-white bg-opacity-50">
           <div class="container">
             <a class="navbar-brand text-white" href="{{url_for('home')}}">
-              <img src="https://trivial-614ce980.s3.amazonaws.com/logos/trivial_logo_v1_512w.png" alt="Trivial logo" class="img-thumbnail" style="max-width: 200px; background-color: transparent; border: 0;" />
+              <img src="https://feeling-freqy-c5d2d988bdf2.s3.amazonaws.com/feeling-freqy-logo-v1.png" alt="Feeling Freqy logo" class="img-thumbnail" style="max-width: 200px; background-color: transparent; border: 0;" />
             </a>
             <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
                 aria-expanded="false" aria-label="Toggle navigation">
@@ -23,36 +23,31 @@
             <div class="collapse navbar-collapse fw-bold text-white" id="collapsibleNavId"> 
               <ul class="navbar-nav ms-auto">
                 <ul class="navbar-nav me-auto mt-2 mt-lg-0">
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('home')}}" style="color: #FF10F0; text-shadow: #FE89D0 1px 0 8px;">Home</a>
-                  </li>
                   {% if logged_in %}
                   <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('my_trivia') }}" style="color: #FF10F0; text-shadow: #FE89D0 1px 0 8px;">My Trivia</a>
+                    <a class="nav-link" href="{{ url_for('my_trivia') }}">My Playlists</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('leaderboard') }}">My Songs</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('logout')}}">Log Out</a>
                   </li>
                   {% endif %}
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('leaderboard') }}" style="color: #FF10F0; text-shadow: #FE89D0 1px 0 8px;">Leaderboard</a>
-                  </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
+                  <i class="bi bi-person-circle"></i>
                   <li class="nav-item">
                     {% if logged_in %}
-                      <a class="nav-link" href="{{url_for('logout')}}" style="color: #FF10F0; text-shadow: #FE89D0 1px 0 8px;">Log Out</a>
-                    {% endif %}
-                  </li>
-                  <i class="bi bi-person-circle" style="color: #FF10F0; text-shadow: #FE89D0 1px 0 8px;"></i>
-                  <li class="nav-item">
-                    {% if logged_in %}
-                    <a class="nav-link" style="color: #00aaff; text-shadow: #57c7ff 1px 0 8px;"> <i class="fa fa-user-circle-o" style="color: #00aaff; text-shadow: #57c7ff 1px 0 8px;"></i> {{ username }}</a>
+                    <a class="nav-link" style="color: #00aaff; text-shadow: #57c7ff 1px 0 8px;"> <i class="fa fa-user-circle-o"></i> {{ username }}</a>
                       
                     {% else %}
-                       <a class="nav-link" href="{{url_for('login')}}" style="color: #FF10F0; text-shadow: #FE89D0 1px 0 8px;">Log In</a>
+                       <a class="nav-link" href="{{url_for('login')}}">Log In</a>
                     {% endif %} 
                   </li>
                   {% if not logged_in %}
                   <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('sign_up')}}" style="color: #FF10F0; text-shadow: #FE89D0 1px 0 8px;">Sign Up</a>
+                    <a class="nav-link" href="{{url_for('sign_up')}}">Sign Up</a>
                   </li>
                   {% endif %}
                 </ul>
@@ -79,11 +74,11 @@
     </ul>
     {% endif %}
     {% endwith %}
-    <div class="container-fluid bg-dark bg-opacity-90 text-white p-5">
+    <div class="container-fluid bg-white bg-opacity-50 text-black p-5">
       <div class="row d-flex align-items-center">
         <div class="col d-flex justify-content-center">
           <a class="navbar-brand text-white" href="{{url_for('home')}}">
-            <img src="https://trivial-614ce980.s3.amazonaws.com/logos/trivial_logo_v1_512w.png" alt="Trivial logo" class="img-thumbnail" style="max-width: 150px; background-color: transparent; border: 0;" />
+            <img src="https://feeling-freqy-c5d2d988bdf2.s3.amazonaws.com/feeling-freqy-logo-v1.png" alt="Feelin' Freqy logo" class="img-thumbnail" style="max-width: 150px; background-color: transparent; border: 0;" />
           </a>
         </div>
       </div>
