@@ -1,10 +1,6 @@
-# from flask_login import UserMixin, LoginManager
 import flask_login
-# from werkzeug.security import generate_password_hash, check_password_hash
 import werkzeug.security
 from flask_sqlalchemy import SQLAlchemy
-# from datetime import datetime, timedelta
-
 
 db = SQLAlchemy()
 login_manager = flask_login.LoginManager()
@@ -21,9 +17,6 @@ class UserModel(flask_login.UserMixin, db.Model):
     
     def check_password(self, password):
         return werkzeug.security.check_password_hash(self.password_hash, password)
-    
-    def __repr__(self):  # Add repr, str, etc. dunders for all classes?
-        return f'user_id_{self.id}'
 
 
 class Playlist(flask_login.UserMixin, db.Model):
