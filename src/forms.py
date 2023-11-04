@@ -9,7 +9,7 @@ class LoginForm(FlaskForm):
 
 class RegisterForm(FlaskForm):
     email = EmailField('email', validators=[DataRequired(), Email(), Length(min=5, max=50)])
-    username = StringField('username', validators=[DataRequired(), Length(min=5, max=50)])
+    # username = StringField('username', validators=[DataRequired(), Length(min=5, max=50)])
     password = PasswordField('password', validators=[DataRequired(), Length(min=5, max=50)])
     confirmPassword = PasswordField('confirmPassword', validators=[DataRequired(), EqualTo('password'), Length(min=5, max=50)])
     
