@@ -109,7 +109,7 @@ def login():
             return render_template('login.html',form=form)
         flask_login.login_user(user)
         session['email'] = form.email.data
-        return redirect(url_for('home'))
+        return redirect(url_for('my_playlists'))
     else:
         # flash('Please enter a valid email and password', 'alert-danger')
         return render_template('login.html',form=form)
@@ -197,6 +197,14 @@ def leaderboard():
                                logged_in=logged_in, username=username)
     return render_template('leaderboard.html', user_filter_form=user_filter_form, users=users, 
                            logged_in=logged_in, username=username)
+
+
+@app.route('/my-playlists', methods=['GET', 'POST'])
+def my_playlists():
+    logged_in, username = verify_user_logged_in()
+    if logged_in:
+        return render_template('my-playlists.html')
+    return redirect(url_for('login'))
 
 
 @app.route('/change_password', methods=["GET", "POST"])
