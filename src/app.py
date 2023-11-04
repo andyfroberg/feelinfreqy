@@ -117,7 +117,7 @@ def sign_up():
                 session['email'] = form.email.data
                 user = UserModel.query.filter_by(email=form.email.data).first()
                 flask_login.login_user(user)
-                return render_template('my-playlists.html', logged_in=logged_in, username=username)  # may need to go back to 'login' if still buggy
+                return render_template('my-playlists.html', logged_in=logged_in, username=username)  # add "playlists=playlists" - new users will not have playlists yet.
             else:
                 flash('Passwords do not match', 'alert-danger')
                 return render_template('signup.html',form=form)
@@ -178,16 +178,24 @@ def get_playlists():
     Retrieves all playlists stored in the playlists db table.
     """
     return {
-        "playlist1": {
-            "song1": {
-                "artist": "Led Zeppelin",
-                "title": "Stairway to Heaven"
-            },
-            "song2": {
-                "artist": "Credence Clearwater Revival",
-                "title": "Fortunate Son"
+        "playlists": [
+            {
+                "playlist_id": "0001",
+                "playlist_name": "Energetic Classic Rock",
+                "songs": [
+                        {
+                            "song_id": "0000001",
+                            "artist": "Led Zeppelin",
+                            "title": "Stairway to Heaven",
+                        },
+                        {
+                            "song_id": "0000002",
+                            "artist": "Credence Clearwater Revival",
+                            "title": "Fortunate Son",
+                        },
+                ],
             }
-        }
+        ],
     }
 
 
